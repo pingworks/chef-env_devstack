@@ -1,0 +1,66 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: 12.4.1
+
+platforms:
+  - name: ubuntu-14.04
+    driver:
+      box: trusty-server-cloudimg-amd64-vagrant-disk1
+      box_url: https://cloud-images.ubuntu.com/vagrant/trusty/20151005/trusty-server-cloudimg-amd64-vagrant-disk1.box
+
+suites:
+  - name: gateway
+    run_list:
+      - recipe[pw_testhelper]
+      - recipe[env_devstack::default]
+    attributes:
+      devstack:
+        roles: ['gateway', 'compute']
+        host_ip: "10.33.0.1"
+        external_iface: "eth0"
+      pw_dnsmasq:
+        interface: "eth1"
+    driver:
+      network:
+        - [ 'private_network', { ip: '10.33.0.1' } ]
+      customize:
+        memory: 1024
+        nictype1: "virtio"
+        nictype2: "virtio"
+
+  - name: ctrl
+    run_list:
+      - recipe[pw_testhelper]
+      - recipe[env_devstack::default]
+    attributes:
+      devstack:
+        roles: ['ctrl']
+        host_ip: "10.33.0.10"
+        external_iface: "eth1"
+    driver:
+      network:
+        - [ 'private_network', { ip: '10.33.0.10' } ]
+      customize:
+        memory: 3072
+        nictype1: "virtio"
+        nictype2: "virtio"
+
+  - name: compute
+    run_list:
+      - recipe[pw_testhelper]
+      - recipe[env_devstack::default]
+    attributes:
+      devstack:
+        host_ip: "10.33.0.11"
+        external_iface: "eth1"
+    driver:
+      network:
+        - [ 'private_network', { ip: '10.33.0.11' } ]
+      customize:
+        memory: 2048
+        nictype1: "virtio"
+        nictype2: "virtio"

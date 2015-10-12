@@ -1,0 +1,22 @@
+default['devstack']['roles'] = []
+
+default['pw_base']['basedomain'] = 'ws.net'
+default['pw_base']['domain'] = 'infra.ws.net'
+default['pw_base']['dns'] = '8.8.8.8'
+
+default['devstack']['service_iface'] = 'eth1'
+default['devstack']['external_iface'] = 'wlan0'
+default['devstack']['host_ip'] = '10.33.0.10'
+default['devstack']['host_nm'] = '24'
+default['devstack']['global_gw_ip'] = '10.33.0.1'
+default['devstack']['global_ctrl_ip'] = '10.33.0.10'
+default['devstack']['dns_recursor_ip'] = '10.33.0.1'
+default['devstack']['router_public_network'] = '172.24.4.0/24'
+default['devstack']['router_public_ip'] = '172.24.4.2'
+default['devstack']['router_public_nm'] = '24'
+default['devstack']['router_public_gw'] = '172.24.4.1'
+default['devstack']['router_private_network'] = '10.0.0.0/24'
+default['devstack']['gitmirror'] = 'git://192.168.0.129/git'
+default['devstack']['defaultnsrecord'] = 'ns1.ws.net.'
+default['devstack']['admin_pwd'] = 'secret'
+default['devstack']['service_token'] = 'secret'

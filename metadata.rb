@@ -1,0 +1,11 @@
+name             'env_devstack'
+maintainer       'Christoph Lukas'
+maintainer_email 'christoph.lukas@gmx.net'
+license          'Apache 2.0'
+description      'Installs/Configures env_devstack'
+long_description 'Installs/Configures env_devstack'
+version          '0.1.0'
+
+depends 'pw_base'
+depends 'pw_dockerhost'
+depends 'devstack'
